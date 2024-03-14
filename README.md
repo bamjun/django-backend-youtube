@@ -38,6 +38,11 @@
 
 # cicd 깃허브 설정하기 .  
 ![alt text](images/markdown-image-5.png)  
+- 깃허브에 푸쉬 후  
+![alt text](images/markdown-image-6.png)  
+
+
+
 
 
 ----  
