@@ -11,4 +11,31 @@ services:
       - "8000:8000"
     volumes:
       - ./app:/app
-    command: sh -c "python manage.py runserver 0.0.0.0:8000"
+    command: >
+      sh -c "python manage.py wait_for_db &&
+              python manage.py migrate &&
+              python manage.py runserver 0.0.0.0:8000"
+
+    environment:  #아래의 변수들은 .env 파일에 저장 (.env) 파일은 comomit 하지 않습니다.
+      - DB_HOST=db
+      - DB_NAME=youtube
+      - DB_USER=bamjun
+      - DB_PASSWORD=password123
+    depends_on:  # 밑에 설정을 해주면, 의존하게 함. db컨테이너 실행 -> app 컨테이너 실행. 
+      - db
+
+  #들여쓰기 중요함. app폴더의 하위 폴더로 가면 안됨.  
+  db:
+    image: postgres:16-alpine
+    #  데이터 저장 공간(./data/db) => " : " 로 구분 (마운트) => /var/lib/postgresql/data (도커부분. 데이터를 저장해두지 않음)
+    # docker-compose down up or down
+    # docker-compose down (데이터 사라짐)
+    # 호스트 환경에 저장해쑈기 때문에 아래의 설정을 통해서 컨테이너가 제거되어도 데이터가 보존된다. 
+    volumes:  # 데이터 저장 공간
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=youtube  # 임의의 이름 지정. 
+      - POSTGRES_USER=bamjun
+      - POSTGRES_PASSWORD=password123
+
+

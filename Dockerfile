@@ -24,10 +24,18 @@ ARG DEV=false
 RUN python -m venv /py && \ 
     /py/bin/pip install --upgrade pip && \
     /py/bin/pip install -r /tmp/requirements.txt && \
+    # no-cache 캐시 부분을 사용안함.  
+    apk add --update --no-cache postgresql-client && \
+    # --virtual .tmp-build-deps 가상의 패키지 생성 명령어  
+    apk add --update --no-cache --virtual .tmp-build-deps \
+    # build-base 컴파일 도구
+        build-base postgresql-dev musl-dev && \
     if [ $DEV = "true" ]; \
         then /py/bin/pip install -r /tmp/requirements.dev.txt ; \
     fi && \
     rm -rf /tmp && \
+    # 설치하고 지우기 
+    apk del .tmp-build-deps && \
     adduser \
         # 학습중이므로 페스워드는 패스..
         --disabled-password \

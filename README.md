@@ -42,7 +42,34 @@
 ![alt text](images/markdown-image-6.png)  
 
 
+6. POSTGREsql  
+   - 주요 특징 MVCC  
+   ![alt text](images/markdown-image-7.png)  
 
+   -마리아db와 포스트그래sql 차이  
+     - 마리아 db는 쓰기가 강함  
+   ![alt text](images/markdown-image-8.png)  
+   - 포스트그래는 읽기에 강함  
+   ![alt text](images/markdown-image-9.png)  
+
+   - 프라이머리와 세컨더리 인덱스: 프라이머리 인덱스는 데이터베이스에서 각 레코드를 고유하게 식별하는 주요 수단입니다. 세컨더리 인덱스는 추가적인 검색 조건을 빠르게 처리할 수 있도록 도와주지만, 동시에 쓰기 작업 시 성능 저하의 원인이 될 수도 있습니다.  
+   
+   - 장고에 다른 데이터 베이스 적용시 공식문서 확인하기 [링크](https://docs.djangoproject.com/en/5.0/ref/databases/)  
+   ![alt text](images/markdown-image-10.png)  
+
+   - 도커 허브에서 다운로드  
+   ![alt text](images/markdown-image-11.png)  
+   - 리눅스 알파인 버전을 사용중이므로 해당 버전 다운  
+   ![alt text](images/markdown-image-12.png)  
+
+   docker-compose.yml
+
+7. 코어 앱생성  
+   - docker-compose run --rm app sh -c "python manage.py startapp core"
+
+8. 장고 명령어 커스텀 [공식페이지](https://docs.djangoproject.com/en/3.2/howto/custom-management-commands/)  
+   - 
+   
 
 
 ----  
