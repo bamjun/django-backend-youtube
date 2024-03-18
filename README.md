@@ -1,4 +1,5 @@
 [교제 링크](https://visioneer.notion.site/Project1_Youtube-988b009559144545aa7e2ab4eb354d6c)  
+[깃링크](https://github.com/Seopftware/django-backend-youtube2)  
 
 # instruction  
 1. 폴더생성  
@@ -71,6 +72,40 @@
    - 
    
 
+9. 장고모델 만들기  
+    users, videos, reactions, comments, subscriptions, common
+    - docker-compose run --rm app sh -c 'python manage.py startapp users'
+    - docker-compose run --rm app sh -c 'python manage.py startapp videos'
+    - docker-compose run --rm app sh -c 'python manage.py startapp reactions'
+    - docker-compose run --rm app sh -c 'python manage.py startapp comments'
+    - docker-compose run --rm app sh -c 'python manage.py startapp subscriptions'
+    - docker-compose run --rm app sh -c 'python manage.py startapp common'
+
+10. custom user model create  
+    - TTD 방식 개발 및 디버깅 시간을 엄청나게 줄일 수 있습니다. PDB(python debugger)  
+
+
+
+
+
+
+
+
+- docker-compose run --rm app sh -c 'python manage.py showmigrations users'
+
+
+- docker-compose up
+
+
+주말 공부
+- 도커 배운 것 정리
+- 유튜브 데이터베이스 모델 구조 고민해오기
+- u 구독은 어떻게 하지? 좋아요는? 싫어요는? 어디에 담지? 비디오는? 댓글은?
+
+
+공군 사보시고 강의도 1번 해보시고 . aws 보다 나았다면 다행입니다 . 고생하셨고요 . 어 너무 삽질 많이 하시고 잘 안되시면 저한테 연락 주시면 제가 바로 돈 드릴게요 여러분 . 아 예 저 오전에 고생하셨습니다 . 
+
+
 
 ----  
 
@@ -120,3 +155,11 @@ o 영상 스트리밍
 · OpenAI API -> FastAPI
 • 유튜브 컨텐츠를 만들 수 있도록 도와주는
 • OpenAIl API를 활용해서 썸네일 및 스크립트 제작
+
+
+
+# 질문
+
+- app/settings.py 에서
+SECRET_KEY = 'django-insecure-4^mu8l2kjhb_=xxkwg5go4n1g)apz#g5+y%d(y@hmsdso96n1o'
+임의로 바꿔도 돼나요 ?
