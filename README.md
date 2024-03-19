@@ -89,7 +89,33 @@
 - docker-compose
 
 12. 깃허브 엑션연결  
-![alt text](images/markdown-image-13.png)
+![alt text](images/markdown-image-13.png)  
+  
+![alt text](images/markdown-image-15.png)  
+  
+![alt text](images/markdown-image-14.png)  
+
+13. 비디오 뷰 만들기  
+  - Video와 관련된 REST API  
+  - 1.VideoList  
+  - api/v1/video  
+  - [GET]: 전체 비디오 목록 조회  
+  - [POST]: 새로운 비디오 생성  
+  - [PUT]: X  
+  - [DELETE]: X  
+
+<br>  
+
+  - 2. VideoDetail  
+  - api/v1/video/{video_id}  
+  - [GET]: 특정 비디오 조회  
+  - [POST]: X  
+  - [PUT]: 특정 비디오 업데이트  
+  - [DELETE]: 특정 비디오 삭제  
+
+14. 비디오 테스트 코드 작성.  
+
+
 
 
 
@@ -159,9 +185,9 @@ o 영상 스트리밍
 • OpenAIl API를 활용해서 썸네일 및 스크립트 제작
 
 
+# to ask
+airbrige
+
 
 # 질문
-
-- app/settings.py 에서
-SECRET_KEY = 'django-insecure-4^mu8l2kjhb_=xxkwg5go4n1g)apz#g5+y%d(y@hmsdso96n1o'
-임의로 바꿔도 돼나요 ?
+디비에서 1;N  N;N 으로 변경할경우..
