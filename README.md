@@ -84,10 +84,12 @@
 10. custom user model create  
     - TTD 방식 개발 및 디버깅 시간을 엄청나게 줄일 수 있습니다. PDB(python debugger)  
 
+11. DjangoRestframework, drf-spectacular [공식페이지](https://pypi.org/project/drf-spectacular/) 설치하기
+- 
+- docker-compose
 
-
-
-
+12. 깃허브 엑션연결  
+![alt text](images/markdown-image-13.png)
 
 
 
