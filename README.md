@@ -116,6 +116,18 @@
 14. 비디오 테스트 코드 작성.  
 
 
+15. pdb 
+- import pdb # python debugger  
+![alt text](images/markdown-image-16.png)  
+
+
+16. dbshell
+- $ docker-compose run --rm app sh -c 'python manage.py dbshell'  
+  ![alt text](images/markdown-image-17.png)  
+  
+17. 유저 시리얼 라이저 적용..  
+    ![alt text](images/markdown-image-18.png)  
+
 
 
 

@@ -1,11 +1,8 @@
 from django.urls import path
-from .views import (
-    VideoList,
-    VideoDetail
-)
+from .views import *
 
 urlpatterns = [
-    path('', VideoList.as_view(),name='video-list'),
-    # path('detail', VideoDetail.as_view(),name='video-detail'),
+    path('', VideoList.as_view(), name='video-list'),
+    path('<int:pk>/', VideoDetail.as_view(),name='video-detail'),
 ]
 

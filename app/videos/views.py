@@ -17,7 +17,7 @@ from rest_framework import status
 # [DELETE]: X
 
 class VideoList(APIView):
-    def get(self):
+    def get(self, request):
         videos = Video.objects.all() # QuerySet[video,video,video ...] 
 
         # 여러개 데이터일때 many=True 안하면 오류남.  
@@ -43,50 +43,33 @@ class VideoList(APIView):
 # [POST]: X
 # [PUT]: 특정 비디오 업데이트
 # [DELETE]: 특정 비디오 삭제
-    
-class VideoDetail():
-    def get():
-        pass
-
-    def put():
-        pass
-
-    def delete():
-        pass
-
-
-
-
-
-
-
-
-from django.shortcuts import render
-from .models import Review
-from .serializers import ReviewSerializer
-from rest_framework.response import Response
-from rest_framework.views import APIView
+        
 from rest_framework.exceptions import NotFound
-
-# Create your views here.
-
-
-# GET: 전체 리뷰 데이터 가져오기
-class Reviews(APIView):
-    def get(self, request):
-        reviews = Review.objects.all() # 장고 객체
-
-        # (Serializer) 장고 객체 -> JSON
-        serializer = ReviewSerializer(reviews, many=True)
-        return Response(serializer.data)
-
-# GET: 특정 리뷰 데이터 가져오기
-class ReviewDetail(APIView):
-    def get(self, request, review_id):
+    
+class VideoDetail(APIView):
+    def get(self, request, pk):
         try:
-            review = Review.objects.get(id=review_id)
-        except Review.DoesNotExist:
+            video = Video.objects.get(pk=pk)
+        except Video.DoesNotExist:
             raise NotFound
-
-        serializer = ReviewSerializer(review)
+        
+        serializer = VideoSerializer(video)
+        
         return Response(serializer.data)
+
+
+    def put(self, request, pk):
+        video_obj = Video.objects.get(pk=pk)
+        user_data = request.data
+        serializer = VideoSerializer(video_obj, user_data)
+
+        serializer.is_valid(raise_exception=True)
+        serializer.save(user=request.user)  #save 하려면 is_valid를 해야함.  
+        return Response(serializer.data)
+    
+
+    def delete(self, request, pk):
+        Video_obj = Video.objects.get(pk=pk)
+        Video_obj.delete()
+        
+        return Response(status=status.HTTP_204_NO_CONTENT)

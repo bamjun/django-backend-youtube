@@ -9,6 +9,8 @@ from django.urls import reverse
 
 from django.core.files.uploadedfile import SimpleUploadedFile
 
+import pdb # python debugger
+
 class VideoAPITestCase(APITestCase):
     # 테스트 코드가 실행되기 전 동작하는 함수
     # - 데이터를 만들어줘야한다. (1) 유저 생성/로그인 -> (2) 비디오 생성
@@ -44,11 +46,14 @@ class VideoAPITestCase(APITestCase):
             'link': 'http://test.com',
             'category': 'test category',
             'thumbnail': 'http://test.com',
+            # 'video_uploaded_url': 'http://test.com',
             'video_file': SimpleUploadedFile('file.mp4', b'file_content', 'video/mp4'),
             'user': self.user.pk,
         }
 
         res = self.client.post(url, data)
+
+        # pdb.set_trace()
 
         self.assertEqual(res.status_code, status.HTTP_201_CREATED)
         self.assertEqual(res.data['title'], 'test video2')
@@ -57,10 +62,35 @@ class VideoAPITestCase(APITestCase):
 
     # 특정 비디오 조회
     def test_video_detail_get(self):
-        pass
+        url = reverse('video-detail', kwargs={'pk': self.video.pk}) # api/vi/video/<int:pk>/
+        res = self.client.get(url)
+
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+
+        
 
     def test_video_detail_put(self):
-        pass
+        url = reverse('video-detail', kwargs={'pk': self.video.pk})
+
+        data = {
+            'title': 'updated video',
+            'link': 'http://test.com',
+            'category': 'test category',
+            'thumbnail': 'http://test.com',
+            # 'video_uploaded_url': 'http://test.com',
+            'video_file': SimpleUploadedFile('file.mp4', b'file_content', 'video/mp4'),
+            'user': self.user.pk,
+        }
+        res = self.client.put(url, data)
+        
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
+        self.assertEqual(res.data['title'], 'updated video')
 
     def test_video_detail_delete(self):
-        pass
+        url = reverse('video-detail', kwargs={'pk': self.video.pk})
+
+        res = self.client.delete(url)
+        self.assertEqual(res.status_code, status.HTTP_204_NO_CONTENT)
+
+        res = self.client.get(url)
+        self.assertEqual(res.status_code, status.HTTP_404_NOT_FOUND)
