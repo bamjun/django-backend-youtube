@@ -23,6 +23,8 @@ class VideoList(APIView):
         # 여러개 데이터일때 many=True 안하면 오류남.  
         serializer = VideoSerializer(videos, many=True)
 
+        print(serializer)
+
         return Response(serializer.data, status=status.HTTP_200_OK)
     
 
