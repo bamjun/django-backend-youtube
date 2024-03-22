@@ -4,17 +4,6 @@ FROM python:3.11-alpine3.19
 # FROM python:3.11-alpine
 
 
-# /etc/apk/repositories 파일에서 ':' 문자를 '/'로 바꾸는 명령 실행
-RUN sed -i 's/:$/\//g' /etc/apk/repositories
-
-# 필요한 패키지 설치 또는 기타 설정
-RUN apk update && apk add --no-cache \
-    some-package \
-    another-package
-
-# 컨테이너 실행 시 기본 명령 설정
-CMD ["some-command"]
-
 
 # LABEL 명령어는 이미지에 메타데이터를 추가합니다. 여기서는 이미지의 유지 관리자를 "seopftware"로 지정하고 있습니다.
 LABEL maintainer="seopftware"
@@ -22,7 +11,7 @@ LABEL maintainer="seopftware"
 # 환경 변수 PYTHONUNBUFFERED를 1로 설정합니다. 
 # 이는 Python이 표준 입출력 버퍼링을 비활성화하게 하여, 로그가 즉시 콘솔에 출력되게 합니다. 
 # 이는 Docker 컨테이너에서 로그를 더 쉽게 볼 수 있게 합니다.
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONUNBUFFERED=1
 
 # 로컬 파일 시스템의 requirements.txt 파일을 컨테이너의 /tmp/requirements.txt로 복사합니다. 
 # 이 파일은 필요한 Python 패키지들을 명시합니다.
