@@ -51,7 +51,21 @@ CUSTOM_USER_APPS = [
     'common.apps.CommonConfig',
     'rest_framework',
     'drf_spectacular',
+    'chat.apps.ChatConfig',
+    'channels'
 ]
+
+
+# Channels를 사용하기 위한 설정
+ASGI_APPLICATION = 'app.routes.application'
+WSGI_APPLICATION = 'app.wsgi.application'
+
+# Channels 설정
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    },
+}
 
 
 
@@ -85,7 +99,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'app.wsgi.application'
+
 
 
 # Database

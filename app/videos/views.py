@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
-from .serializers import VideoSerializer
+from .serializers import *
 from .models import Video
 
 from rest_framework.response import Response
@@ -21,7 +21,7 @@ class VideoList(APIView):
         videos = Video.objects.all() # QuerySet[video,video,video ...] 
 
         # 여러개 데이터일때 many=True 안하면 오류남.  
-        serializer = VideoSerializer(videos, many=True)
+        serializer = VideoListSerializer(videos, many=True)
 
         print(serializer)
 
@@ -30,7 +30,7 @@ class VideoList(APIView):
 
     def post(self, request):
         user_data = request.data  # Json -> Object 역직렬화 (장고가 이해할수없다.)
-        serializer = VideoSerializer(data=user_data)
+        serializer = VideoListSerializer(data=user_data)
 
         if serializer.is_valid():
             serializer.save(user=request.user)
@@ -55,7 +55,7 @@ class VideoDetail(APIView):
         except Video.DoesNotExist:
             raise NotFound
         
-        serializer = VideoSerializer(video)
+        serializer = VideoDetailSerializer(video)
         
         return Response(serializer.data)
 
@@ -63,7 +63,7 @@ class VideoDetail(APIView):
     def put(self, request, pk):
         video_obj = Video.objects.get(pk=pk)
         user_data = request.data
-        serializer = VideoSerializer(video_obj, user_data)
+        serializer = VideoDetailSerializer(video_obj, user_data)
 
         serializer.is_valid(raise_exception=True)
         serializer.save(user=request.user)  #save 하려면 is_valid를 해야함.  

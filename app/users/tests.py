@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 
+
 class UserTestCase(TestCase):
     # 회원가입을 가정하고 => 회원가입 함수 테스트 코드를 작성하려고 합니다.
     # 이메일과 패스워드를 입력받고, 회원가입이 정상적으로 잘 이뤄졌는지 체크
