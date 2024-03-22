@@ -24,13 +24,10 @@ EXPOSE 8000
 ARG DEV=false
 
 
-# PostgreSQL 16 설치 및 설정
-RUN echo "http://dl-cdn.alpinelinux.org/alpine/v3.16/main" > /etc/apk/repositories && \
-    echo "http://dl-cdn.alpinelinux.org/alpine/v3.16/community" >> /etc/apk/repositories && \
-    apk update && \
-    apk add --no-cache postgresql-client && \
-    # PostgreSQL 버전 확인
-    postgresql-client --version
+RUN sed 's/https/http/g' -i /etc/apk/repositories
+RUN apk update
+RUN apk add --no-cache bash
+RUN apk add tzdata
 
 # 리눅스 -> venv 
 RUN python -m venv /py && \ 
