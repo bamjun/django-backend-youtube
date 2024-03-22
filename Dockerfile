@@ -1,6 +1,7 @@
 #  Python 3.11이 설치된 Alpine Linux 3.19
 # Alpine Linux는 경량화된 리눅스 배포판으로, 컨테이너 환경에 적합
-FROM python:3.11-alpine3.19
+# FROM python:3.11-alpine3.19
+FROM python:3.11-alpine
 
 # LABEL 명령어는 이미지에 메타데이터를 추가합니다. 여기서는 이미지의 유지 관리자를 "seopftware"로 지정하고 있습니다.
 LABEL maintainer="seopftware"
