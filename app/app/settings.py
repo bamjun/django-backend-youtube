@@ -23,7 +23,7 @@ ALLOWED_HOSTS = ['*']
 
 
 # Application definition
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DJANGO_SYSTEM_APPS = [
     'django.contrib.admin',
