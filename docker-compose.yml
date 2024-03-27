@@ -1,6 +1,7 @@
 # docker-compose 도커 컨테이너 관리
 
 version: "3.11"
+
 services:
   app: #django 
     build:
@@ -37,5 +38,3 @@ services:
       - POSTGRES_DB=youtube  # 임의의 이름 지정. 
       - POSTGRES_USER=bamjun
       - POSTGRES_PASSWORD=password123
-
-
