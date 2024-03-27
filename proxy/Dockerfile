@@ -1,5 +1,5 @@
 FROM nginx:latest
-LABEL maintainer="seopftware"
+LABEL maintainer="input-your-name"
 
 COPY ./default.conf.tpl /etc/nginx/default.conf.tpl
 COPY ./uwsgi_params /etc/nginx/uwsgi_params
